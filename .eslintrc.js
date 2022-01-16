@@ -23,12 +23,14 @@ module.exports = {
         'react/jsx-indent': 'off',
         'import/prefer-default-export': 'off',
         'react/jsx-indent-props': 'off',
+        'react/function-component-definition': 'off',
         'linebreak-style': 0,
         '@typescript-eslint/quotes': ['error', 'single'], // 더블 쿼터 사용
         'no-unused-vars': 'off', // 사용 안 한 변수 경고 중복
         'spaced-comment': 'off', // 주석을 뒤에 쓰지 말라는 경고
         '@typescript-eslint/no-unused-vars': 'warn', // 사용 안 한 변수는 경고
-        'jsx-ally/control-has-associated-label': 'off', // 상호 작용하는 엘리먼트에 label을 넣는다
+        'jsx-a11y/control-has-associated-label': 'off', // 상호 작용하는 엘리먼트에 label을 넣는다
+        'jsx-a11y/anchor-is-valid': 'off',
         'react/no-array-index-key': 'off', // key값으로 index를 사용할 수 있다.
         'comma-dangle': 'off', // 마지막에 , 을 넣어주지 않는다
         'arrow-body-style': 'off', // 화살표 함수 안에 return을 사용할 수 있다.
