@@ -21,6 +21,8 @@ module.exports = {
         quotes: ['error', 'single'],
         indent: ['off', 4],
         'react/jsx-indent': 'off',
+        'import/prefer-default-export': 'off',
+        'react/jsx-indent-props': 'off',
         'linebreak-style': 0,
         '@typescript-eslint/quotes': ['error', 'single'], // 더블 쿼터 사용
         'no-unused-vars': 'off', // 사용 안 한 변수 경고 중복
