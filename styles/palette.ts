@@ -7,6 +7,7 @@ export default {
     main_pink: '#FF385C',
     bittersweet: '#ff5a5f',
     black: '#222222',
+    charcoal: '#484848',
     snow: '#FFF8F6',
     gray_48: '#FFF8F6',
     gray_71: '#717171',
