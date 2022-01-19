@@ -6,7 +6,7 @@ import PersonIcon from '../../public/static/svg/auth/person.svg';
 import OpenedEyeIcon from '../../public/static/svg/auth/opened-eye.svg';
 import ClosedEyeIcon from '../../public/static/svg/auth/closed-eye.svg';
 import palette from '../../styles/palette';
-import Input from '../Input';
+import Input from '../common/Input';
 
 const Container = styled.form`
     width: 568px;
