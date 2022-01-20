@@ -13,6 +13,7 @@ import { dayList, monthList, yearList } from '../../lib/staticData';
 import Button from '../common/Button';
 import { signupAPI } from '../../lib/api/auth';
 import { userActions } from '../../store/user';
+import { commonActions } from '../../store/common';
 
 const Container = styled.form`
     width: 568px;
@@ -78,8 +79,6 @@ const SignUpModal: React.FC = () => {
     const [birthDay, setBirthDay] = useState<string | undefined>();
     const [birthMonth, setBirthMonth] = useState<string | undefined>();
 
-    const [validateMode, setValidateMode] = useState<boolean>(false);
-
     const dispatch = useDispatch();
 
     // 이메일 변경 시
@@ -127,7 +126,7 @@ const SignUpModal: React.FC = () => {
     // 회원가입 폼 제출하기
     const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setValidateMode(true);
+        dispatch(commonActions.setValidateMode(true));
 
         if (!email || !lastname || !firstname || !password) {
             return undefined;

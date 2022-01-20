@@ -4,9 +4,11 @@ import {
     TypedUseSelectorHook,
     useSelector as useReduxSelector,
 } from 'react-redux';
+import common from './common';
 import user from './user';
 
 const rootReducer = combineReducers({
+    common: common.reducer,
     user: user.reducer,
 });
 
