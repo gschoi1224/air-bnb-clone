@@ -10,6 +10,7 @@ import Input from '../common/Input';
 import Selector from '../common/Selector';
 import { dayList, monthList, yearList } from '../../lib/staticData';
 import Button from '../common/Button';
+import { signupAPI } from '../../lib/api/auth';
 
 const Container = styled.form`
     width: 568px;
@@ -116,8 +117,29 @@ const SignUpModal: React.FC = () => {
     const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setBirthYear(event.target.value);
     };
+
+    // 회원가입 폼 제출하기
+    const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        try {
+            const signUpBody = {
+                email,
+                lastname,
+                firstname,
+                password,
+                birthday: new Date(
+                    `${birthYear}-${birthMonth!.replace('월', '')}-${birthDay}`
+                ).toISOString(),
+            };
+            await signupAPI(signUpBody);
+        } catch (e) {
+            // eslint-disable-next-line
+            console.log(e);
+        }
+    };
     return (
-        <Container>
+        <Container onSubmit={onSubmitSignUp}>
             <CloseXIcon className="modal-close-x-icon" />
             <div className="input-wrapper">
                 <Input

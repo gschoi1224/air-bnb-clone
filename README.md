@@ -11,3 +11,10 @@
 ```js
 ReactDOM.createPortal(child, container);
 ```
+
+## 비밀번호 암호화
+
+-   bcryptjs 라이브러리 사용
+-   암호화 hashSync("문자", salt)
+-   복호화 compareSync("문자", 해시된 문자)
+-   salt는 암호에 추가하여 해시를 해킹하는 것을 방지하는 값
