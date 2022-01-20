@@ -18,3 +18,7 @@ ReactDOM.createPortal(child, container);
 -   암호화 hashSync("문자", salt)
 -   복호화 compareSync("문자", 해시된 문자)
 -   salt는 암호에 추가하여 해시를 해킹하는 것을 방지하는 값
+
+## 객체 속성 optional로 변경
+
+-   Partial<Pick<객체, 속성>>
