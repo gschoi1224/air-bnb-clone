@@ -22,3 +22,9 @@ ReactDOM.createPortal(child, container);
 ## 객체 속성 optional로 변경
 
 -   Partial<Pick<객체, 속성>>
+
+## redux
+
+-   action : store로 데이터를 보내는 방법으로 view에 정의된 액션을 호출하면 액션 생성자가 어플리케이션의 상태를 변경한다
+-   reducer : 어플리케이션의 상태가 어떻게 바뀌는지 특정하는 함수
+-   store : action과 reducer를 저장하는 단 하나의 객체

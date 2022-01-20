@@ -21,6 +21,7 @@ module.exports = {
         quotes: ['error', 'single'],
         indent: ['off', 4],
         'no-undef': 0,
+        'no-param-reassign': 0,
         'react/require-default-props': 0,
         'react/jsx-indent': 'off',
         'import/prefer-default-export': 'off',
