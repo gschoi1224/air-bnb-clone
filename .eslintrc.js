@@ -21,6 +21,7 @@ module.exports = {
         quotes: ['error', 'single'],
         indent: ['off', 4],
         'no-undef': 0,
+        'no-confusing-arrow': 0,
         'no-param-reassign': 0,
         'consistent-return': 0,
         'react/require-default-props': 0,
