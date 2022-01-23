@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SignUpModal from './SignUpModal';
 import { useSelector, RootState } from '../../store';
+import LoginModal from './LoginModal';
 
 const Container = styled.div`
     z-index: 11;
@@ -16,7 +17,7 @@ const AuthModal: React.FC<IProps> = ({ closeModal }) => {
     return (
         <Container>
             {authMode === 'signup' && <SignUpModal closeModal={closeModal} />}
-            {authMode === 'login' && <div>로그인</div>}
+            {authMode === 'login' && <LoginModal closeModal={closeModal} />}
         </Container>
     );
 };
