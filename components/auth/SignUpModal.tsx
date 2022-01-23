@@ -173,9 +173,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         }
         // 비밀번호가 올바르지 않다면
         if (
-            !isPasswordHasNameOrEmail ||
+            isPasswordHasNameOrEmail ||
             !isPasswordOverMinLength ||
-            !isPasswordHasNumberOrSymbol
+            isPasswordHasNumberOrSymbol
         ) {
             return false;
         }
