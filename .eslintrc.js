@@ -25,6 +25,8 @@ module.exports = {
         'no-param-reassign': 0,
         'consistent-return': 0,
         'react/require-default-props': 0,
+        'no-console': 0,
+        'no-alert': 0,
         'react/jsx-indent': 'off',
         'import/prefer-default-export': 'off',
         'react/jsx-indent-props': 'off',
