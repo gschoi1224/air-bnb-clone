@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import CloseXIcon from '../../public/static/svg/modal/modal-close-x-icon.svg';
-import MailIcon from '../../public/static/svg/auth/mail.svg';
-import PersonIcon from '../../public/static/svg/auth/person.svg';
-import OpenedEyeIcon from '../../public/static/svg/auth/opened-eye.svg';
-import ClosedEyeIcon from '../../public/static/svg/auth/closed-eye.svg';
+import CloseXIcon from '../icons/CloseXIcon';
+import MailIcon from '../icons/MailIcon';
+import PersonIcon from '../icons/PersonIcon';
+import OpenedEyeIcon from '../icons/OpenedEyeIcon';
+import ClosedEyeIcon from '../icons/ClosedEyeIcon';
 import palette from '../../styles/palette';
 import Input from '../common/Input';
 import Selector from '../common/Selector';
@@ -190,7 +190,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         [password]
     );
     // 회원가입 폼 입력 값 확인하기
-    const validateSignUpForm = () => {
+    const validateSignUpForm = useCallback(() => {
         // 인풋 값이 없다면
         if (!email || !lastname || !firstname || !password) {
             return false;
@@ -209,39 +209,42 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
             return false;
         }
         return true;
-    };
+    }, [email, lastname, firstname, password, birthDay, birthMonth, birthYear]);
 
     // 회원가입 폼 제출하기
-    const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        setValidateMode(true);
-        if (validateSignUpForm()) {
-            try {
-                const signUpBody = {
-                    email,
-                    lastname,
-                    firstname,
-                    password,
-                    birthday: new Date(
-                        `${birthYear}-${birthMonth!.replace(
-                            '월',
-                            ''
-                        )}-${birthDay}`
-                    ).toISOString(),
-                };
-                const { data } = await signupAPI(signUpBody);
-                dispatch(userActions.setLoggedUser(data));
-                closeModal();
-            } catch (e) {
-                // eslint-disable-next-line
-                console.log(e);
+    const onSubmitSignUp = useCallback(
+        async (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            setValidateMode(true);
+            if (validateSignUpForm()) {
+                try {
+                    const signUpBody = {
+                        email,
+                        lastname,
+                        firstname,
+                        password,
+                        birthday: new Date(
+                            `${birthYear}-${birthMonth!.replace(
+                                '월',
+                                ''
+                            )}-${birthDay}`
+                        ).toISOString(),
+                    };
+                    const { data } = await signupAPI(signUpBody);
+                    dispatch(userActions.setLoggedUser(data));
+                    closeModal();
+                } catch (e) {
+                    // eslint-disable-next-line
+                    console.log(e);
+                }
             }
-        }
-    };
+        },
+        [email, lastname, firstname, password, birthYear, birthMonth, birthDay]
+    );
     // 비밀번호 인풋 포커스 되었을 때
-    const onFocusPassword = () => {
+    const onFocusPassword = useCallback(() => {
         setPasswordFocused(true);
-    };
+    }, []);
 
     // 언마운트시 validateMode 초기화
     useEffect(() => {
@@ -250,9 +253,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         };
     }, []);
 
-    const changeToLoginModal = () => {
+    const changeToLoginModal = useCallback(() => {
         dispatch(authActions.setAuthMode('login'));
-    };
+    }, []);
 
     return (
         <Container onSubmit={onSubmitSignUp}>
