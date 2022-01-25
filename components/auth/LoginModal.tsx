@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import CloseXIcon from '../../public/static/svg/modal/modal-close-x-icon.svg';
-import MailIcon from '../../public/static/svg/auth/mail.svg';
-import ClosedEyeIcon from '../../public/static/svg/auth/closed-eye.svg';
-import OpenedEyeIcon from '../../public/static/svg/auth/opened-eye.svg';
+import CloseXIcon from '../icons/CloseXIcon';
+import MailIcon from '../icons/MailIcon';
+import ClosedEyeIcon from '../icons/ClosedEyeIcon';
+import OpenedEyeIcon from '../icons/OpenedEyeIcon';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -54,44 +54,53 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
     const [isPasswordHided, setIsPasswordHided] = useState<boolean>(true);
 
     // 이메일 주소 변경 시
-    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
-    };
+    const onChangeEmail = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            setEmail(e.target.value);
+        },
+        []
+    );
     // 비밀번호 변경 시
-    const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    };
+    const onChangePassword = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            setPassword(e.target.value);
+        },
+        []
+    );
     // 비밀번호 보이기 변경
-    const togglePasswordHiding = () => {
-        setIsPasswordHided(isPasswordHided);
-    };
+    const togglePasswordHiding = useCallback(() => {
+        setIsPasswordHided(!isPasswordHided);
+    }, [isPasswordHided]);
 
     const dispatch = useDispatch();
     // 회원가입 모달로 변경하기
-    const changeToSignUpModal = () => {
+    const changeToSignUpModal = useCallback(() => {
         dispatch(authActions.setAuthMode('signup'));
-    };
+    }, []);
 
     const { setValidateMode } = useValidateMode();
 
     // 로그인 클릭시
-    const onSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setValidateMode(true);
-        if (!email || !password) {
-            alert('이메일과 비밀번호를 입력해주세요.');
-        } else {
-            const loginBody = { email, password };
-            try {
-                const { data } = await loginAPI(loginBody);
-                dispatch(userActions.setLoggedUser(data));
-                closeModal();
-                console.log(data);
-            } catch (e) {
-                console.log(e);
+    const onSubmitLogin = useCallback(
+        async (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+            setValidateMode(true);
+            if (!email || !password) {
+                alert('이메일과 비밀번호를 입력해주세요.');
+            } else {
+                const loginBody = { email, password };
+                try {
+                    const { data } = await loginAPI(loginBody);
+                    dispatch(userActions.setLoggedUser(data));
+                    closeModal();
+                    console.log(data);
+                } catch (e) {
+                    console.log(e);
+                }
             }
-        }
-    };
+        },
+        [email, password]
+    );
 
     // 클린업 validateMode 초기화
     useEffect(() => {
