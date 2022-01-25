@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
-import OutsideClickHandler from 'react-outside-click-handler';
 import AirbnbLogoIcon from '../public/static/svg/logo/logo.svg';
 import AirbnbLogoTextIcon from '../public/static/svg/logo/logo_text.svg';
 import palette from '../styles/palette';
 import useModal from '../hooks/useModal';
-import HamburgerIcon from '../public/static/svg/header/hamburger.svg';
 import { useSelector } from '../store';
-import { authActions } from '../store/auth';
 import AuthModal from './auth/AuthModal';
-import { logoutAPI } from '../lib/api/auth';
-import { userActions } from '../store/user';
+import HeaderAuths from './HeaderAuths';
+import HeaderUserProfile from './HeaderUserProfile';
 
 const Container = styled.div`
     position: sticky;
@@ -116,20 +112,9 @@ const Container = styled.div`
 `;
 
 const Header: React.FC = () => {
-    const { openModal, ModalPortal, closeModal } = useModal();
+    const { ModalPortal, closeModal } = useModal();
+    // useSelector는 객체의 주소를 비교하는데 유저 정보가 변경되어 user가 변경된다면 객체가 새로 만들어져 user 객체를 불러온 컴포넌트는 전부 리렌더됨
     const user = useSelector((state) => state.user);
-    const dispatch = useDispatch();
-    const [isUsermenuOpened, setIsUsermenuOpened] = useState<boolean>(false);
-
-    // 로그아웃
-    const logout = async () => {
-        try {
-            await logoutAPI();
-            dispatch(userActions.initUser());
-        } catch (e) {
-            console.log(e.message);
-        }
-    };
     return (
         <Container>
             <Link href="/">
@@ -138,71 +123,8 @@ const Header: React.FC = () => {
                     <AirbnbLogoTextIcon />
                 </a>
             </Link>
-            {!user.isLogged && (
-                <div className="header-auth-buttons">
-                    <button
-                        type="button"
-                        className="header-sign-up-button"
-                        onClick={() => {
-                            dispatch(authActions.setAuthMode('signup'));
-                            openModal();
-                        }}
-                    >
-                        회원가입
-                    </button>
-                    <button
-                        type="button"
-                        className="header-login-button"
-                        onClick={() => {
-                            dispatch(authActions.setAuthMode('login'));
-                            openModal();
-                        }}
-                    >
-                        로그인
-                    </button>
-                </div>
-            )}
-            {user.isLogged && (
-                <OutsideClickHandler
-                    onOutsideClick={() => {
-                        if (isUsermenuOpened) {
-                            setIsUsermenuOpened(false);
-                        }
-                    }}
-                >
-                    <button
-                        className="header-user-profile"
-                        type="button"
-                        onClick={() => setIsUsermenuOpened(!isUsermenuOpened)}
-                    >
-                        <HamburgerIcon />
-                        <img
-                            src={user.profileImage}
-                            className="header-user-profile-image"
-                            alt=""
-                        />
-                    </button>
-                    {isUsermenuOpened && (
-                        <ul className="header-usermenu">
-                            <li>숙소 관리</li>
-                            <Link href="/room/register/building">
-                                <a
-                                    role="presentation"
-                                    onClick={() => {
-                                        setIsUsermenuOpened(false);
-                                    }}
-                                >
-                                    <li>숙소 등록하기</li>
-                                </a>
-                            </Link>
-                            <div className="header-usermenu-divider" />
-                            <li role="presentation" onClick={logout}>
-                                로그아웃
-                            </li>
-                        </ul>
-                    )}
-                </OutsideClickHandler>
-            )}
+            {!user.isLogged && <HeaderAuths />}
+            {user.isLogged && <HeaderUserProfile />}
             <ModalPortal>
                 <AuthModal closeModal={closeModal} />
             </ModalPortal>

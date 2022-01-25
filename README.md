@@ -35,3 +35,7 @@ ReactDOM.createPortal(child, container);
 ```js
 <OutsideClickHandler onOutsideClick={}>
 ```
+
+## 성능 최적화
+1. 크롬 확장 프로그램 React Developer Tools 설치
+2. Profiler 탭 Highlight updates when components render. 체크
