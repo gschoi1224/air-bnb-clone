@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import AirbnbLogoIcon from '../public/static/svg/logo/logo.svg';
-import AirbnbLogoTextIcon from '../public/static/svg/logo/logo_text.svg';
+import AirbnbLogoIcon from './icons/AirbnbLogoIcon';
+import AirbnbLogoTextIcon from './icons/AirbnbLogoTextIcon';
 import palette from '../styles/palette';
 import useModal from '../hooks/useModal';
 import { useSelector } from '../store';
