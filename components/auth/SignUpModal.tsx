@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import CloseXIcon from '../../public/static/svg/modal/modal-close-x-icon.svg';
-import MailIcon from '../../public/static/svg/auth/mail.svg';
-import PersonIcon from '../../public/static/svg/auth/person.svg';
-import OpenedEyeIcon from '../../public/static/svg/auth/opened-eye.svg';
-import ClosedEyeIcon from '../../public/static/svg/auth/closed-eye.svg';
+import CloseXIcon from '../icons/CloseXIcon';
+import MailIcon from '../icons/MailIcon';
+import PersonIcon from '../icons/PersonIcon';
+import OpenedEyeIcon from '../icons/OpenedEyeIcon';
+import ClosedEyeIcon from '../icons/ClosedEyeIcon';
 import palette from '../../styles/palette';
 import Input from '../common/Input';
 import Selector from '../common/Selector';
@@ -82,6 +82,10 @@ interface IProps {
 // 비밀번호 최소 자릿수 컴포넌트 밖에 선언해 재생성 되지 않도록
 const PASSWORD_MIN_LENGTH = 8;
 
+const disabledMonths = ['월'];
+const disabledDays = ['일'];
+const disabledYear = ['년'];
+
 const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     const [email, setEmail] = useState<string>('');
     const [lastname, setLastname] = useState<string>('');
@@ -100,46 +104,65 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     const dispatch = useDispatch();
 
     // 이메일 변경 시
-    const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
-    };
+    const onChangeEmail = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            setEmail(event.target.value);
+        },
+        []
+    );
 
     // 이름 변경 시
-    const onChangeLastname = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setLastname(event.target.value);
-    };
+    const onChangeLastname = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            setLastname(event.target.value);
+        },
+        []
+    );
 
     // 성 변경 시
-    const onChangeFirstname = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFirstname(event.target.value);
-    };
+    const onChangeFirstname = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            setFirstname(event.target.value);
+        },
+        []
+    );
 
     // 비밀번호 변경 시
-    const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
-    };
+    const onChangePassword = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            setPassword(event.target.value);
+        },
+        []
+    );
 
     // 비밀번호 숨김 토글하기
-    const toggleHidePassword = () => {
+    const toggleHidePassword = useCallback(() => {
         setHidePassword(!hidePassword);
-    };
+    }, [hidePassword]);
 
     // 생년월일 월 변경 시
-    const onChangeBirthMonth = (
-        event: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        setBirthMonth(event.target.value);
-    };
+    const onChangeBirthMonth = useCallback(
+        (event: React.ChangeEvent<HTMLSelectElement>) => {
+            setBirthMonth(event.target.value);
+        },
+        []
+    );
 
     // 생년월일 일 변경 시
-    const onChangeBirthDay = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setBirthDay(event.target.value);
-    };
+    const onChangeBirthDay = useCallback(
+        (event: React.ChangeEvent<HTMLSelectElement>) => {
+            setBirthDay(event.target.value);
+        },
+        []
+    );
 
     // 생년월일 년 변경 시
-    const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setBirthYear(event.target.value);
-    };
+    const onChangeBirthYear = useCallback(
+        (event: React.ChangeEvent<HTMLSelectElement>) => {
+            setBirthYear(event.target.value);
+        },
+        []
+    );
 
     // password가 이름이나 이메일을 포함하는지
     const isPasswordHasNameOrEmail = useMemo(
@@ -167,7 +190,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         [password]
     );
     // 회원가입 폼 입력 값 확인하기
-    const validateSignUpForm = () => {
+    const validateSignUpForm = useCallback(() => {
         // 인풋 값이 없다면
         if (!email || !lastname || !firstname || !password) {
             return false;
@@ -186,39 +209,42 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
             return false;
         }
         return true;
-    };
+    }, [email, lastname, firstname, password, birthDay, birthMonth, birthYear]);
 
     // 회원가입 폼 제출하기
-    const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        setValidateMode(true);
-        if (validateSignUpForm()) {
-            try {
-                const signUpBody = {
-                    email,
-                    lastname,
-                    firstname,
-                    password,
-                    birthday: new Date(
-                        `${birthYear}-${birthMonth!.replace(
-                            '월',
-                            ''
-                        )}-${birthDay}`
-                    ).toISOString(),
-                };
-                const { data } = await signupAPI(signUpBody);
-                dispatch(userActions.setLoggedUser(data));
-                closeModal();
-            } catch (e) {
-                // eslint-disable-next-line
-                console.log(e);
+    const onSubmitSignUp = useCallback(
+        async (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            setValidateMode(true);
+            if (validateSignUpForm()) {
+                try {
+                    const signUpBody = {
+                        email,
+                        lastname,
+                        firstname,
+                        password,
+                        birthday: new Date(
+                            `${birthYear}-${birthMonth!.replace(
+                                '월',
+                                ''
+                            )}-${birthDay}`
+                        ).toISOString(),
+                    };
+                    const { data } = await signupAPI(signUpBody);
+                    dispatch(userActions.setLoggedUser(data));
+                    closeModal();
+                } catch (e) {
+                    // eslint-disable-next-line
+                    console.log(e);
+                }
             }
-        }
-    };
+        },
+        [email, lastname, firstname, password, birthYear, birthMonth, birthDay]
+    );
     // 비밀번호 인풋 포커스 되었을 때
-    const onFocusPassword = () => {
+    const onFocusPassword = useCallback(() => {
         setPasswordFocused(true);
-    };
+    }, []);
 
     // 언마운트시 validateMode 초기화
     useEffect(() => {
@@ -227,9 +253,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         };
     }, []);
 
-    const changeToLoginModal = () => {
+    const changeToLoginModal = useCallback(() => {
         dispatch(authActions.setAuthMode('login'));
-    };
+    }, []);
 
     return (
         <Container onSubmit={onSubmitSignUp}>
@@ -317,7 +343,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                 <div className="sign-up-modal-birthday-month-selector">
                     <Selector
                         options={monthList}
-                        disabledOptions={['월']}
+                        disabledOptions={disabledMonths}
                         defaultValue="월"
                         onChange={onChangeBirthMonth}
                         value={birthMonth}
@@ -327,7 +353,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                 <div className="sign-up-modal-birthday-day-selector">
                     <Selector
                         options={dayList}
-                        disabledOptions={['일']}
+                        disabledOptions={disabledDays}
                         defaultValue="일"
                         value={birthDay}
                         onChange={onChangeBirthDay}
@@ -337,7 +363,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                 <div className="sign-up-modal-birthday-year-selector">
                     <Selector
                         options={yearList}
-                        disabledOptions={['년']}
+                        disabledOptions={disabledYear}
                         defaultValue="년"
                         value={birthYear}
                         onChange={onChangeBirthYear}
