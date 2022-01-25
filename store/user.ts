@@ -22,6 +22,10 @@ const user = createSlice({
             state = { ...action.payload, isLogged: true };
             return state;
         },
+        // 유저 초기화하기
+        initUser() {
+            return initialState;
+        },
     },
 });
 
