@@ -1,0 +1,26 @@
+import React from 'react';
+import AirbnbLogo from '../../public/static/svg/logo/logo.svg';
+import AirbnbLogoText from '../../public/static/svg/logo/logo_text.svg';
+import BackArrow from '../../public/static/svg/register/register_room_footer_back_arrow.svg';
+import ClosedEye from '../../public/static/svg/auth/closed-eye.svg';
+import CloseX from '../../public/static/svg/modal/modal-close-x-icon.svg';
+import Hamburger from '../../public/static/svg/header/hamburger.svg';
+import Mail from '../../public/static/svg/auth/mail.svg';
+import OpenedEye from '../../public/static/svg/auth/opened-eye.svg';
+import Person from '../../public/static/svg/auth/person.svg';
+import Warning from '../../public/static/svg/common/warning.svg';
+import CounterMinus from '../../public/static/svg/common/counter/counter_minus.svg';
+import CounterPlus from '../../public/static/svg/common/counter/counter_plus.svg';
+
+export const AirbnbLogoIcon = React.memo(AirbnbLogo);
+export const AirbnbLogoTextIcon = React.memo(AirbnbLogoText);
+export const BackArrowIcon = React.memo(BackArrow);
+export const ClosedEyeIcon = React.memo(ClosedEye);
+export const CloseXIcon = React.memo(CloseX);
+export const HamburgerIcon = React.memo(Hamburger);
+export const MailIcon = React.memo(Mail);
+export const OpenedEyeIcon = React.memo(OpenedEye);
+export const PersonIcon = React.memo(Person);
+export const WarningIcon = React.memo(Warning);
+export const CounterMinusIcon = React.memo(CounterMinus);
+export const CounterPlusIcon = React.memo(CounterPlus);

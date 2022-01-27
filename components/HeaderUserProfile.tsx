@@ -3,7 +3,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 import styled from 'styled-components';
-import HamburgerIcon from './icons/HamburgerIcon';
+import { HamburgerIcon } from './icons';
 import { logoutAPI } from '../lib/api/auth';
 import { userActions } from '../store/user';
 import { useSelector } from '../store';

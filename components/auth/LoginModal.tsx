@@ -1,10 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import CloseXIcon from '../icons/CloseXIcon';
-import MailIcon from '../icons/MailIcon';
-import ClosedEyeIcon from '../icons/ClosedEyeIcon';
-import OpenedEyeIcon from '../icons/OpenedEyeIcon';
+import { CloseXIcon, MailIcon, ClosedEyeIcon, OpenedEyeIcon } from '../icons';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
 import Input from '../common/Input';
