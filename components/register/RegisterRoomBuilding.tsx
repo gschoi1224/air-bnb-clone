@@ -118,6 +118,19 @@ const RegisterRoomBuilding: React.FC = () => {
         dispatch(registerRoomActions.setIsSetUpForGuest(value));
     };
 
+    // 모든 값이 있는지 확인
+    const isValid = useMemo(() => {
+        if (
+            !largeBuildingType ||
+            !buildingType ||
+            !roomType ||
+            isSetUpForGuest === null
+        ) {
+            return false;
+        }
+        return true;
+    }, [largeBuildingType, buildingType, roomType, isSetUpForGuest]);
+
     return (
         <Container>
             <h2>등록할 숙소 종류는 무엇인가요?</h2>
@@ -131,6 +144,7 @@ const RegisterRoomBuilding: React.FC = () => {
                     label="우선 범위를 좁혀볼까요?"
                     options={largeBuildingTypeList}
                     onChange={onChangeLargeBuildingType}
+                    isValid={!!largeBuildingType}
                 />
             </div>
             <div className="register-room-building-selector-wrapper">
@@ -141,6 +155,7 @@ const RegisterRoomBuilding: React.FC = () => {
                     label="건물 유형을 선택하세요."
                     options={detailBuildingOptions}
                     onChange={onChangeBuildingType}
+                    isValid={!!buildingType}
                 />
             </div>
             {buildingType && (
@@ -150,6 +165,7 @@ const RegisterRoomBuilding: React.FC = () => {
                         value={roomType}
                         options={roomTypeRadioOptions}
                         onChange={onChangeRoomType}
+                        isValid={!!roomType}
                     />
                 </div>
             )}
@@ -160,11 +176,12 @@ const RegisterRoomBuilding: React.FC = () => {
                         value={isSetUpForGuest}
                         onChange={onChangeIsSetUpForGuest}
                         options={isSetUpForGuestOptions}
+                        isValid={isSetUpForGuest !== null}
                     />
                 </div>
             )}
             <RegisterRoomFooter
-                isValid={false}
+                isValid={isValid}
                 prevHref="/"
                 nextHref="/room/register/bedrooms"
             />
