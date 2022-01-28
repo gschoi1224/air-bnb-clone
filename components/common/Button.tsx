@@ -34,7 +34,7 @@ const normalButtonStyle = css`
 `;
 
 const RegisterButtonStyle = css`
-    width: 161px
+    width: 161px;
     height: 45px;
     border: 1px solid ${palette.gray_c4};
     background-color: white;
@@ -54,7 +54,7 @@ const Container = styled.button<{ styleType: 'normal' | 'register' }>`
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    color?: 'dark_cyan';
+    color?: 'dark_cyan' | 'white';
     styleType?: 'normal' | 'register';
 }
 
