@@ -9,7 +9,7 @@ export default {
     black: '#222222',
     charcoal: '#484848',
     snow: '#FFF8F6',
-    gray_48: '#FFF8F6',
+    gray_48: '#484848',
     gray_71: '#717171',
     gray_76: '#767676',
     gray_80: '#808080',
