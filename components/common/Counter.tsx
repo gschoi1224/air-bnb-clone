@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
-import { CounterMinusIcon, CounterPlusIcon } from '../icons';
 
 const Container = styled.div`
     display : flex;
@@ -79,7 +78,7 @@ const Counter: React.FC<IProps> = ({
                         }
                     }}
                 >
-                    <CounterMinusIcon />
+                    -
                 </button>
                 <p>{value}</p>
                 <button
@@ -90,7 +89,7 @@ const Counter: React.FC<IProps> = ({
                         }
                     }}
                 >
-                    <CounterPlusIcon />
+                    +
                 </button>
             </div>
         </Container>

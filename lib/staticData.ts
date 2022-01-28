@@ -132,3 +132,6 @@ export const buildingTypeList = {
     'B&B': bnbBuildingTypeList,
     부티크호텔: boutiquesHotelBuildingTypeList,
 };
+
+// 침실 개수
+export const bedroomCountList = Array.from(Array(16), (_, i) => `침실 ${i}개`);
