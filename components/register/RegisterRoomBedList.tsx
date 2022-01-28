@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BedType } from '../../types/room';
 import RegisterRoomBedTypes from './RegisterRoomBedTypes';
+import RegisterRoomPublicBedTypes from './RegisterRoomPublicBedTypes';
 
 const Container = styled.ul`
     width: 548px;
@@ -17,6 +18,7 @@ const RegisterRoomBedList: React.FC<IProps> = ({ bedList }) => {
             {bedList.map((bedroom) => (
                 <RegisterRoomBedTypes bedroom={bedroom} key={bedroom.id} />
             ))}
+            <RegisterRoomPublicBedTypes />
         </Container>
     );
 };
