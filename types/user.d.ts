@@ -1,4 +1,4 @@
-export type UserType = {
+declare type UserType = {
     id: number;
     email: string;
     firstname: string;
@@ -7,7 +7,7 @@ export type UserType = {
     profileImage: string;
 };
 
-export type StoredUserType = {
+declare type StoredUserType = {
     id: number;
     email: string;
     password: string;

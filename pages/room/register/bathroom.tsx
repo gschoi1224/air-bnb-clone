@@ -1,8 +1,9 @@
 import React from 'react';
 import { NextPage } from 'next';
+import RegisterBathroom from '../../../components/register/RegisterBathroom';
 
 const bathroom: NextPage = () => {
-    return <div></div>;
+    return <RegisterBathroom />;
 };
 
 export default bathroom;

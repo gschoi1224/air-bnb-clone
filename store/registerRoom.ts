@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BedType } from '../types/room';
 
 type RegisterRoomState = {
     // 건물 유형 큰 범주
@@ -20,6 +19,10 @@ type RegisterRoomState = {
     bedList: { id: number; beds: { type: BedType; count: number }[] }[];
     // 공용공간 침대 유형
     publicBedList: { type: BedType; count: number }[];
+    // 욕실 개수
+    bathroomCount: number;
+    // 욕실 유형
+    bathroomType: 'private' | 'public' | null;
 };
 
 // 초기 상태
@@ -33,6 +36,8 @@ const initialState: RegisterRoomState = {
     bedCount: 1,
     bedList: [],
     publicBedList: [],
+    bathroomCount: 1,
+    bathroomType: null,
 };
 
 const registerRoom = createSlice({
@@ -136,6 +141,12 @@ const registerRoom = createSlice({
                 state.publicBedList[index].count = count;
             }
             return state;
+        },
+        setBathroomCount(state, action: PayloadAction<number>) {
+            state.bathroomCount = action.payload;
+        },
+        setBathroomType(state, action: PayloadAction<'private' | 'public'>) {
+            state.bathroomType = action.payload;
         },
     },
 });

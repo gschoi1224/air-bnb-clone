@@ -1,5 +1,5 @@
 // 침대 유형
-export type BedType =
+declare type BedType =
     | '다른 침대 추가'
     | '소파'
     | '에어 매트릭스'
