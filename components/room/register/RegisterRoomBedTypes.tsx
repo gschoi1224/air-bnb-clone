@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { bedTypes } from '../../../lib/staticData';
 import { registerRoomActions } from '../../../store/registerRoom';
 import palette from '../../../styles/palette';
-import { BedType } from '../../../types/room';
 import Button from '../../common/Button';
 import Counter from '../../common/Counter';
 import Selector from '../../common/Selector';
@@ -104,11 +103,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
                         {bedsText}
                     </p>
                 </div>
-                <Button
-                    onClick={toggleOpened}
-                    styleType="register"
-                    color="white"
-                >
+                <Button onClick={toggleOpened} width={'auto'} color="white">
                     {opened && '완료'}
                     {!opened &&
                         (totalBedsCount === 0
