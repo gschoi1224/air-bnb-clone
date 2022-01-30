@@ -23,6 +23,22 @@ type RegisterRoomState = {
     bathroomCount: number;
     // 욕실 유형
     bathroomType: 'private' | 'public' | null;
+    // 국가 지역
+    country: string;
+    // 시/도
+    city: string;
+    // 시/군/구
+    district: string;
+    // 도로명주소
+    streetAddress: string;
+    // 도로명주소
+    detailAddress: string;
+    // 우편번호
+    postcode: string;
+    // 위도
+    latitude: number;
+    // 경도
+    longitude: number;
 };
 
 // 초기 상태
@@ -38,6 +54,14 @@ const initialState: RegisterRoomState = {
     publicBedList: [],
     bathroomCount: 1,
     bathroomType: null,
+    country: '',
+    city: '',
+    district: '',
+    streetAddress: '',
+    detailAddress: '',
+    postcode: '',
+    latitude: 0,
+    longitude: 0,
 };
 
 const registerRoom = createSlice({
@@ -144,9 +168,43 @@ const registerRoom = createSlice({
         },
         setBathroomCount(state, action: PayloadAction<number>) {
             state.bathroomCount = action.payload;
+            return state;
         },
         setBathroomType(state, action: PayloadAction<'private' | 'public'>) {
             state.bathroomType = action.payload;
+            return state;
+        },
+        setCountry(state, action: PayloadAction<string>) {
+            state.country = action.payload;
+            return state;
+        },
+        setCity(state, action: PayloadAction<string>) {
+            state.city = action.payload;
+            return state;
+        },
+        setDistrict(state, action: PayloadAction<string>) {
+            state.district = action.payload;
+            return state;
+        },
+        setStreetAddress(state, action: PayloadAction<string>) {
+            state.streetAddress = action.payload;
+            return state;
+        },
+        setDetailAddress(state, action: PayloadAction<string>) {
+            state.detailAddress = action.payload;
+            return state;
+        },
+        setPostcode(state, action: PayloadAction<string>) {
+            state.postcode = action.payload;
+            return state;
+        },
+        setLatitude(state, action: PayloadAction<number>) {
+            state.latitude = action.payload;
+            return state;
+        },
+        setLongitude(state, action: PayloadAction<number>) {
+            state.longitude = action.payload;
+            return state;
         },
     },
 });
