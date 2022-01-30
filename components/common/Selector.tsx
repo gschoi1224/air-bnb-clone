@@ -87,6 +87,18 @@ const Container = styled.div<SelectorContainerProps>`
             cursor: not-allowed;
         }
     }
+    .selector-warning {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        svg {
+            margin-right: 4px;
+        }
+        p {
+            font-size: 12px;
+            color: ${palette.davidson_orange};
+        }
+    }
 `;
 
 interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
