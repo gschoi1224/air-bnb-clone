@@ -9,6 +9,7 @@ import Selector from '../../common/Selector';
 import { NavigationIcon } from '../../icons';
 import { useSelector } from '../../../store';
 import { registerRoomActions } from '../../../store/registerRoom';
+import { getLocationInfoAPI } from '../../../lib/api/map';
 
 const Container = styled.div`
     padding: 62px 30px 100px;
@@ -80,6 +81,32 @@ const RegisterLocation: React.FC = () => {
         dispatch(registerRoomActions.setPostcode(e.target.value));
     };
 
+    // 현재 위치 불러오기에 성공했을 때
+    const onSuccessGetLocation = async ({
+        coords,
+    }: {
+        coords: GeolocationCoordinates;
+    }) => {
+        try {
+            const { data } = await getLocationInfoAPI({
+                latitude: coords.latitude,
+                longitude: coords.longitude,
+            });
+            console.log(data);
+        } catch (e) {
+            console.log(e);
+            alert(e?.message);
+        }
+    };
+
+    // 현재 위치 사용 클릭시
+    const onClickGetCurrentLocation = () => {
+        navigator.geolocation.getCurrentPosition(onSuccessGetLocation, (e) => {
+            console.log(e);
+            alert(e?.message);
+        });
+    };
+
     return (
         <Container>
             <h2>숙소의 위치를 알려주세요.</h2>
@@ -92,6 +119,7 @@ const RegisterLocation: React.FC = () => {
                     color="dark_cyan"
                     colorReverse
                     icon={<NavigationIcon />}
+                    onClick={onClickGetCurrentLocation}
                 >
                     현재 위치 사용
                 </Button>
