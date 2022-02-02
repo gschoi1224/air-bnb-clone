@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-
+import throttle from 'lodash/throttle';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useSelector } from '../../../store';
 
 import palette from '../../../styles/palette';
+import { registerRoomActions } from '../../../store/registerRoom';
+import RegisterRoomFooter from './RegisterRoomFooter';
 
 const Container = styled.div`
     padding: 62px 30px 100px;
@@ -61,6 +64,7 @@ const RegisterRoomGeometry: React.FC = () => {
     const loadMap = async () => {
         await loadMapScript();
     };
+    const dispatch = useDispatch();
 
     window.initMap = () => {
         // 지도 불러오기
@@ -79,6 +83,16 @@ const RegisterRoomGeometry: React.FC = () => {
                 },
                 map,
             });
+            map.addListener(
+                'center_changed',
+                throttle(() => {
+                    const centerLat = map.getCenter().lat();
+                    const centerLng = map.getCenter().lng();
+                    marker.setPosition({ lat: centerLat, lng: centerLng });
+                    dispatch(registerRoomActions.setLatitude(centerLat));
+                    dispatch(registerRoomActions.setLongitude(centerLng));
+                }, 150)
+            );
         }
     };
 
@@ -94,6 +108,10 @@ const RegisterRoomGeometry: React.FC = () => {
             <div className="register-room-geometry-map-wrapper">
                 <div ref={mapRef} id="map" />
             </div>
+            <RegisterRoomFooter
+                prevHref="/room/register/location"
+                nextHref="/room/register/amentities"
+            />
         </Container>
     );
 };
