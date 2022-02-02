@@ -26,6 +26,8 @@ module.exports = {
         'consistent-return': 0,
         'react/require-default-props': 0,
         'jsx-a11y/label-has-associated-control': 0,
+        'react/jsx-curly-brace-presence': 0,
+        'react/jsx-curly-newline': 0,
         'no-console': 0,
         'no-alert': 0,
         'react/jsx-indent': 'off',

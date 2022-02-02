@@ -32,10 +32,19 @@ ReactDOM.createPortal(child, container);
 ## react-outside-click-handler
 
 -   외부 클릭 시 원하는 이벤트를 넣을 수 있는 기능 제공
+
 ```js
 <OutsideClickHandler onOutsideClick={}>
 ```
 
 ## 성능 최적화
+
 1. 크롬 확장 프로그램 React Developer Tools 설치
 2. Profiler 탭 Highlight updates when components render. 체크
+
+## 서버사이드 렌더링 하지 않고 불러오기
+
+```ts
+import dynamic from 'next/dynamic';
+const Component = dynamic(import('경로'), { ssr: false });
+```

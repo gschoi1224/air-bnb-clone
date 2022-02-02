@@ -1,7 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { CloseXIcon, MailIcon, PersonIcon, OpenedEyeIcon, ClosedEyeIcon } from '../icons';
+import {
+    CloseXIcon,
+    MailIcon,
+    PersonIcon,
+    OpenedEyeIcon,
+    ClosedEyeIcon,
+} from '../icons';
 import palette from '../../styles/palette';
 import Input from '../common/Input';
 import Selector from '../common/Selector';
@@ -368,7 +374,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                 </div>
             </div>
             <div className="sign-up-modal-submit-button-wrapper">
-                <Button type="submit">가입하기</Button>
+                <Button type="submit" color="bittersweet">
+                    가입하기
+                </Button>
             </div>
             <p>
                 이미 에어비앤비 계정이 있나요?

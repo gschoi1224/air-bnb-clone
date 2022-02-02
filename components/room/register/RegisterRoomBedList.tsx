@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BedType } from '../../../types/room';
 import RegisterRoomBedTypes from './RegisterRoomBedTypes';
 import RegisterRoomPublicBedTypes from './RegisterRoomPublicBedTypes';
 
