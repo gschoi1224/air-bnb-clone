@@ -28,6 +28,7 @@ module.exports = {
         'jsx-a11y/label-has-associated-control': 0,
         'react/jsx-curly-brace-presence': 0,
         'react/jsx-curly-newline': 0,
+        'no-plusplus': 0,
         'no-console': 0,
         'no-alert': 0,
         'react/jsx-indent': 'off',
