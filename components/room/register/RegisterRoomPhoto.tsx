@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { uploadFileAPI } from '../../../lib/api/file';
 import { useSelector } from '../../../store';
+import { registerRoomActions } from '../../../store/registerRoom';
 import palette from '../../../styles/palette';
 import Button from '../../common/Button';
 import { UploadIcon } from '../../icons';
@@ -50,6 +52,7 @@ const Container = styled.div`
 
 const RegisterRoomPhoto: React.FC = () => {
     const photos = useSelector((state) => state.registerRoom.photos);
+    const dispatch = useDispatch();
 
     // 이미지 업로드하기
     const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +62,10 @@ const RegisterRoomPhoto: React.FC = () => {
             const formdata = new FormData();
             formdata.append('file', file);
             try {
-                await uploadFileAPI(formdata);
+                const { data } = await uploadFileAPI(formdata);
+                if (data) {
+                    dispatch(registerRoomActions.setPhotos([...photos, data]));
+                }
             } catch (e) {
                 console.log(e);
             }
