@@ -48,3 +48,7 @@ ReactDOM.createPortal(child, container);
 import dynamic from 'next/dynamic';
 const Component = dynamic(import('경로'), { ssr: false });
 ```
+
+## textarea 크기 조절
+
+-   `react-autosize-textarea` 라이브러리 사용
