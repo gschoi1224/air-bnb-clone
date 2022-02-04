@@ -7,6 +7,7 @@ import { registerRoomActions } from '../../../store/registerRoom';
 import palette from '../../../styles/palette';
 import Button from '../../common/Button';
 import { UploadIcon } from '../../icons';
+import RegisterRoomPhotoCardList from './RegisterRoomPhotoCardList';
 
 const Container = styled.div`
     padding: 62px 30px 100px;
@@ -96,6 +97,7 @@ const RegisterRoomPhoto: React.FC = () => {
                     </Button>
                 </div>
             )}
+            {photos.length > 0 && <RegisterRoomPhotoCardList photos={photos} />}
         </Container>
     );
 };

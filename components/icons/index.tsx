@@ -13,6 +13,9 @@ import CounterMinus from '../../public/static/svg/common/counter/counter_minus.s
 import CounterPlus from '../../public/static/svg/common/counter/counter_plus.svg';
 import Navigation from '../../public/static/svg/register/navigation.svg';
 import Upload from '../../public/static/svg/register/upload.svg';
+import Pencil from '../../public/static/svg/register/photo/pencil.svg';
+import TrashCan from '../../public/static/svg/register/photo/trash_can.svg';
+import GrayPlus from '../../public/static/svg/register/photo/gray_plus.svg';
 
 export const AirbnbLogoIcon = React.memo(AirbnbLogo);
 export const AirbnbLogoTextIcon = React.memo(AirbnbLogoText);
@@ -28,3 +31,6 @@ export const CounterMinusIcon = React.memo(CounterMinus);
 export const CounterPlusIcon = React.memo(CounterPlus);
 export const NavigationIcon = React.memo(Navigation);
 export const UploadIcon = React.memo(Upload);
+export const PencilIcon = React.memo(Pencil);
+export const TrashCanIcon = React.memo(TrashCan);
+export const GrayPlusIcon = React.memo(GrayPlus);
