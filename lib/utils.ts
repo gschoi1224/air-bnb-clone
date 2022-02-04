@@ -1,3 +1,5 @@
+import { registerRoomActions } from '../store/registerRoom';
+
 // token=value를 {token: value}로 바꾸는 함수
 export const cookieStringToObject = (cookieString: string | undefined) => {
     const cookies: { [key: string]: string } = {};
@@ -19,3 +21,6 @@ export const getNumber = (string: string) => {
     }
     return null;
 };
+
+// ,가 포함된 금액 형식으로 입력값 변경하는 함수
+export const makeMoneyString = (money: number) => money.toLocaleString();

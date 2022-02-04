@@ -49,6 +49,8 @@ type RegisterRoomState = {
     description: string;
     // 숙소 제목
     title: string;
+    // 숙소 요금
+    price: number;
 };
 
 // 초기 상태
@@ -77,6 +79,7 @@ const initialState: RegisterRoomState = {
     photos: [],
     description: '',
     title: '',
+    price: 0,
 };
 
 const registerRoom = createSlice({
@@ -238,6 +241,10 @@ const registerRoom = createSlice({
         },
         setTitle(state, action: PayloadAction<string>) {
             state.title = action.payload;
+            return state;
+        },
+        setPrice(state, action: PayloadAction<number>) {
+            state.price = action.payload;
             return state;
         },
     },
