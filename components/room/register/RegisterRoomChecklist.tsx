@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useSelector } from '../../../store';
 import RegisterRoomCheckStep from './RegisterRoomCheckStep';
+import RegisterRoomFooter from './RegisterRoomFooter';
+import RegisterRoomSubmitFooter from './RegisterRoomSubmitFooter';
 
 const Container = styled.div`
     padding: 62px 30px 100px;
@@ -34,13 +36,7 @@ const RegisterRoomChecklist: React.FC = () => {
 
     // 2단계 숙소 종류가 활성화됐는지
     const isRoomTypeActived = useMemo(() => {
-        const {
-            maximumGuestCount,
-            bedroomCount,
-            bedCount,
-            bedList,
-            publicBedList,
-        } = registerRoom;
+        const { maximumGuestCount, bedroomCount, bedCount } = registerRoom;
         if (
             !isBuildingTypeActived ||
             !maximumGuestCount ||
@@ -70,7 +66,7 @@ const RegisterRoomChecklist: React.FC = () => {
             city,
             district,
             streetAddress,
-            detailAddress,
+            // detailAddress,
             postcode,
         } = registerRoom;
         if (
@@ -261,6 +257,14 @@ const RegisterRoomChecklist: React.FC = () => {
                     inProgress={stepInProgress === 'date'}
                 />
             </ul>
+            {!isDateActived ? (
+                <RegisterRoomSubmitFooter />
+            ) : (
+                <RegisterRoomFooter
+                    prevHref="/room/register/date"
+                    nextHref={`/room/register/${stepInProgress}`}
+                />
+            )}
         </Container>
     );
 };
