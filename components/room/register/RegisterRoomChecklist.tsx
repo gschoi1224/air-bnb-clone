@@ -257,7 +257,7 @@ const RegisterRoomChecklist: React.FC = () => {
                     inProgress={stepInProgress === 'date'}
                 />
             </ul>
-            {!isDateActived ? (
+            {isDateActived ? (
                 <RegisterRoomSubmitFooter />
             ) : (
                 <RegisterRoomFooter

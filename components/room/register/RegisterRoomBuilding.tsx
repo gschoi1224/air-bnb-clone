@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { buildingTypeList, largeBuildingTypeList } from '../../../lib/staticData';
+import {
+    buildingTypeList,
+    largeBuildingTypeList,
+} from '../../../lib/staticData';
 import { useSelector } from '../../../store';
 import { registerRoomActions } from '../../../store/registerRoom';
 import palette from '../../../styles/palette';
@@ -91,9 +94,7 @@ const RegisterRoomBuilding: React.FC = () => {
         const houseBuildingTypeList = buildingTypeList[largeBuildingType];
         if (houseBuildingTypeList && houseBuildingTypeList.length > 0) {
             dispatch(
-                registerRoomActions.setBuildingType(
-                    houseBuildingTypeList || houseBuildingTypeList[0]
-                )
+                registerRoomActions.setBuildingType(houseBuildingTypeList[0])
             );
         }
         return houseBuildingTypeList;

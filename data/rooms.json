@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "largeBuildingType": "주택",
+        "buildingType": "통나무집",
+        "roomType": "entire",
+        "isSetUpForGuest": true,
+        "maximumGuestCount": 4,
+        "bedroomCount": 2,
+        "bedCount": 1,
+        "bedList": [
+            { "id": 1, "beds": [{ "type": "싱글", "count": 2 }] },
+            { "id": 2, "beds": [{ "type": "더블", "count": 1 }] }
+        ],
+        "publicBedList": [{ "type": "소파", "count": 1 }],
+        "bathroomCount": 2,
+        "bathroomType": "private",
+        "country": "대한민국",
+        "city": "인천광역시",
+        "district": "남동구",
+        "streetAddress": "만수동９４３−１",
+        "detailAddress": "",
+        "postcode": "405-240",
+        "latitude": 37.4534886,
+        "longitude": 126.7280249,
+        "amentites": ["무선 인터넷", "TV", "에어컨", "다리미", "난방"],
+        "conveniences": ["수영장", "헬스장", "주차", "세탁 공간 - 세탁기"],
+        "photos": [
+            "https://cgs-bucket.s3.ap-northeast-2.amazonaws.com/aReYde6__d111feeb-bb23-4cda-8bb1-d0c826ff8966.jpg",
+            "https://cgs-bucket.s3.ap-northeast-2.amazonaws.com/Little_cat_im_hungry-Animal_Photo_HD_Wallpaper_1366x768__0a2cc9c3-bc01-4d8f-a0a0-d3922c869357.jpg",
+            "https://cgs-bucket.s3.ap-northeast-2.amazonaws.com/Cute_gray_kitten_High_Quality_Wallpaper_1366x768__c323d85c-1ca2-47ff-ab8b-206783385569.jpg"
+        ],
+        "description": "귀여운 고양이들을 왕으로 모셔야 하는 통나무 집입니다.\n고양이들을 섬기기 위해 츄르와 로얄캐닌을 준비해 오세요.",
+        "title": "귀여운 고양이들의 통나무집",
+        "price": 1000000,
+        "startDate": "2022-02-08T00:00:00.000Z",
+        "endDate": "2022-02-18T00:00:00.000Z",
+        "hostId": 1,
+        "createdAt": "2022-02-05T17:26:08.450Z",
+        "updatedAt": "2022-02-05T17:26:08.450Z"
+    }
+]
