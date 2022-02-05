@@ -16,6 +16,7 @@ import Upload from '../../public/static/svg/register/upload.svg';
 import Pencil from '../../public/static/svg/register/photo/pencil.svg';
 import TrashCan from '../../public/static/svg/register/photo/trash_can.svg';
 import GrayPlus from '../../public/static/svg/register/photo/gray_plus.svg';
+import CheckMark from '../../public/static/svg/register/dark_cyan_check_mark.svg';
 
 export const AirbnbLogoIcon = React.memo(AirbnbLogo);
 export const AirbnbLogoTextIcon = React.memo(AirbnbLogoText);
@@ -34,3 +35,4 @@ export const UploadIcon = React.memo(Upload);
 export const PencilIcon = React.memo(Pencil);
 export const TrashCanIcon = React.memo(TrashCan);
 export const GrayPlusIcon = React.memo(GrayPlus);
+export const CheckMarkIcon = React.memo(CheckMark);
