@@ -31,6 +31,7 @@ module.exports = {
         'no-plusplus': 0,
         'no-console': 0,
         'no-alert': 0,
+        'arrow-parens': 0,
         'react/jsx-indent': 'off',
         'import/prefer-default-export': 'off',
         'react/jsx-indent-props': 'off',
