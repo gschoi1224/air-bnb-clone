@@ -175,7 +175,15 @@ const SearchRoomBarLocation: React.FC = () => {
                         )}
                         {!isEmpty(results) &&
                             results.map((result, index) => (
-                                <li key={index}>{result.description}</li>
+                                <li
+                                    key={index}
+                                    onClick={() => {
+                                        onClickResult(result.placeId);
+                                    }}
+                                    role="presentation"
+                                >
+                                    {result.description}
+                                </li>
                             ))}
                         {location && isEmpty(results) && (
                             <li>검색 결과가 없습니다.</li>
