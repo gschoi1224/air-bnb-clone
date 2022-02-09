@@ -1,11 +1,15 @@
 import React from 'react';
 import { NextPage } from 'next';
+import { useDispatch } from 'react-redux';
 import { wrapper } from '../../store';
 import RoomMain from '../../components/room/main/RoomMain';
 import { getRoomListAPI } from '../../lib/api/room';
 import { roomActions } from '../../store/room';
+import { RoomType } from '../../types/room';
 
-const index: NextPage = () => {
+const index: NextPage<{ rooms: RoomType[] }> = ({ rooms }) => {
+    const dispatch = useDispatch();
+    dispatch(roomActions.setRooms(rooms));
     return <RoomMain />;
 };
 
@@ -37,6 +41,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
                     : undefined,
             });
             store.dispatch(roomActions.setRooms(data));
+            return { props: { rooms: data } };
         } catch (e) {
             console.log(e);
         }

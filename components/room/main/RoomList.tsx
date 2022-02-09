@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from '../../../store';
+import RoomCard from './RoomCard';
 
 const Container = styled.ul`
     display: flex;
@@ -11,7 +12,13 @@ const Container = styled.ul`
 
 const RoomList: React.FC = () => {
     const rooms = useSelector(state => state.room.rooms);
-    return <Container>{rooms.map(room => '룸카드')}</Container>;
+    return (
+        <Container>
+            {rooms.map(room => (
+                <RoomCard room={room} key={room.id} />
+            ))}
+        </Container>
+    );
 };
 
 export default RoomList;

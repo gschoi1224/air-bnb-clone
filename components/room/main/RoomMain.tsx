@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { useSelector } from '../../../store';
 import palette from '../../../styles/palette';
 import { MapIcon } from '../../icons';
+import RoomList from './RoomList';
 
 const Container = styled.div`
     padding: 50px 88px;
@@ -97,7 +98,9 @@ const RoomMain: React.FC = () => {
                     <MapIcon /> 지도 표시하기
                 </button>
             </div>
-            <div className="room-list-wrapper">룸리스트</div>
+            <div className="room-list-wrapper">
+                <RoomList />
+            </div>
         </Container>
     );
 };
