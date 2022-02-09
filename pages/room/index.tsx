@@ -9,37 +9,39 @@ const index: NextPage = () => {
     return <RoomMain />;
 };
 
-index.getInitialProps = async ({ store, query }) => {
-    const {
-        checkOutDate,
-        adultCount,
-        childrenCount,
-        latitude,
-        longitude,
-        limit,
-        page = '1',
-        checkInDate,
-    } = query;
-    try {
-        const { data } = await getRoomListAPI({
-            checkInDate,
+export const getServerSideProps = wrapper.getServerSideProps(
+    store => async req => {
+        const {
             checkOutDate,
             adultCount,
             childrenCount,
             latitude,
             longitude,
-            limit: limit || '20',
-            page: page || '1',
-            // 한글은 encode
-            location: query.location
-                ? encodeURI(query.location as string)
-                : undefined,
-        });
-        store.dispatch(roomActions.setRooms(data));
-    } catch (e) {
-        console.log(e);
+            limit,
+            page = '1',
+            checkInDate,
+        } = req.query;
+        try {
+            const { data } = await getRoomListAPI({
+                checkInDate,
+                checkOutDate,
+                adultCount,
+                childrenCount,
+                latitude,
+                longitude,
+                limit: limit || '20',
+                page: page || '1',
+                // 한글은 encode
+                location: req.query.location
+                    ? encodeURI(req.query.location as string)
+                    : undefined,
+            });
+            store.dispatch(roomActions.setRooms(data));
+        } catch (e) {
+            console.log(e);
+        }
+        return { props: null };
     }
-    return {};
-};
+);
 
 export default index;
