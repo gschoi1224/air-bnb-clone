@@ -64,68 +64,69 @@ const Container = styled.li<{ showMap: boolean }>`
     }
     .room-bad-bath-room-info {
         display: none;
-        ${({ showMap }) =>
-            showMap &&
-            css`
-                width: 100% !important;
-                margin: 0;
-                padding: 24px 0;
-                border-bottom: 1px solid ${palette.gray_eb};
-                &:first-child {
-                    padding-top: 0;
-                }
-                a {
-                    width: 100%;
-                    display: flex;
-                    .room-card-info-texts {
-                        position: relative;
-                        flex-grow: 1;
-                        height: 200px;
-                    }
-                    .room-card-photo-wrapper {
-                        width: 300px;
-                        min-width: 300px;
-                        height: 200px;
-                        margin-right: 16px;
-                        margin-bottom: 0;
-                        padding-bottom: 0;
-                        border-radius: 8px;
-                        overflow: hidden;
-                    }
-                    .room-card-room-info {
-                        font-size: 14px;
-                        margin-bottom: 13px;
-                    }
-                    .room-card-title {
-                        font-size: 18px;
-                        margin-bottom: 11px;
-                    }
-                    .room-card-text-divider {
-                        width: 32px;
-                        height: 1px;
-                        margin-bottom: 10px;
-                        background-color: ${palette.gray_dd};
-                    }
-                    .room-bed-bath-room-info {
-                        display: block;
-                        font-size: 14px;
-                        color: ${palette.gray_71};
-                    }
-                    .room-card-price {
-                        position: absolute;
-                        margin: 0;
-                        right: 0;
-                        bottom: 17px;
-                    }
-                    .room-card-total-price {
-                        position: absolute;
-                        right: 0;
-                        bottom: 0;
-                        text-decoration: underline;
-                    }
-                }
-            `}
     }
+    ${({ showMap }) =>
+        showMap &&
+        css`
+            width: 100% !important;
+            margin: 0;
+            padding: 24px 0;
+            border-bottom: 1px solid ${palette.gray_eb};
+            &:first-child {
+                padding-top: 0;
+            }
+            a {
+                width: 100%;
+                display: flex;
+                .room-card-info-texts {
+                    position: relative;
+                    flex-grow: 1;
+                    height: 200px;
+                }
+                .room-card-photo-wrapper {
+                    width: 300px;
+                    min-width: 300px;
+                    height: 200px;
+                    margin-right: 16px;
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                    border-radius: 8px;
+                    overflow: hidden;
+                }
+                .room-card-room-info {
+                    font-size: 14px;
+                    margin-bottom: 13px;
+                }
+                .room-card-title {
+                    font-size: 18px;
+                    white-space: break-spaces;
+                    margin-bottom: 11px;
+                }
+                .room-card-text-divider {
+                    width: 32px;
+                    height: 1px;
+                    margin-bottom: 10px;
+                    background-color: ${palette.gray_dd};
+                }
+                .room-bed-bath-room-info {
+                    display: block;
+                    font-size: 14px;
+                    color: ${palette.gray_71};
+                }
+                .room-card-price {
+                    position: absolute;
+                    margin: 0;
+                    right: 0;
+                    bottom: 17px;
+                }
+                .room-card-total-price {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    text-decoration: underline;
+                }
+            }
+        `}
 `;
 
 interface IProps {
@@ -171,7 +172,12 @@ const RoomCard: React.FC<IProps> = ({ room, showMap }) => {
                         <p className="room-card-title">{room.title}</p>
                         <div className="room-card-text-divider" />
                         <p className="room-card-price">
-                            <b>₩{room.price}</b>/1박
+                            <b>₩{makeMoneyString(Number(room.price))}</b>/1박
+                        </p>
+                        <p className="room-bed-bath-room-info">
+                            인원 {room.maximumGuestCount}명 · 침실{' '}
+                            {room.bedroomCount}개 · 침대 {room.bedCount}개 ·
+                            욕실 {room.bedroomCount}개
                         </p>
                         {!!remainDays && (
                             <p className="room-card-total-price">

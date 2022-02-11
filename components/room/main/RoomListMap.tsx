@@ -73,11 +73,11 @@ const loadMapScript = () => {
 };
 
 interface IProps {
-    showMap: boolean;
+    showMap?: boolean;
     setShowMap: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const RoomListMap: React.FC<IProps> = ({ showMap, setShowMap }) => {
+const RoomListMap: React.FC<IProps> = ({ showMap = false, setShowMap }) => {
     const rooms = useSelector(state => state.room.rooms);
     const mapRef = useRef<HTMLDivElement>(null);
     const [currentLocation, setCurrentLocation] = useState({
