@@ -98,7 +98,6 @@ const Container = styled.li<{ showMap: boolean }>`
                     }
                     .room-card-title {
                         font-size: 18px;
-                        white-space: break-spaces;
                         margin-bottom: 11px;
                     }
                     .room-card-text-divider {
