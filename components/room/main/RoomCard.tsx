@@ -172,11 +172,11 @@ const RoomCard: React.FC<IProps> = ({ room, showMap }) => {
                         <p className="room-card-title">{room.title}</p>
                         <div className="room-card-text-divider" />
                         <p className="room-card-price">
-                            <b>\{room.price}</b>/1박
+                            <b>₩{room.price}</b>/1박
                         </p>
                         {!!remainDays && (
                             <p className="room-card-total-price">
-                                총 요금 : \
+                                총 요금 : ₩
                                 {makeMoneyString(
                                     Number(room.price) * remainDays
                                 )}
