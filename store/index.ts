@@ -7,6 +7,7 @@ import {
 import auth from './auth';
 import common from './common';
 import registerRoom from './registerRoom';
+import room from './room';
 import searchRoom from './searchRoom';
 import user from './user';
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     auth: auth.reducer,
     registerRoom: registerRoom.reducer,
     searchRoom: searchRoom.reducer,
+    room: room.reducer,
 });
 
 // 스토어의 타입

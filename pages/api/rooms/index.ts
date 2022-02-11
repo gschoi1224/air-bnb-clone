@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import isEmpty from 'lodash/isEmpty';
 import Data from '../../../lib/data';
+import { StoredRoomType } from '../../../types/room';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
@@ -91,6 +92,90 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         } catch (e) {
             console.log(e);
             return res.send(e.message);
+        }
+    }
+    if (req.method === 'GET') {
+        const {
+            checkInDate,
+            checkOutDate,
+            adultCount,
+            childrenCount,
+            latitude,
+            longitude,
+            limit,
+            page = '1',
+        } = req.query;
+        try {
+            const rooms = Data.room.getList();
+            // 개수 자르기
+            const filteredRooms = rooms.filter(room => {
+                if (
+                    latitude &&
+                    latitude !== '0' &&
+                    longitude &&
+                    longitude !== '0'
+                ) {
+                    const latDiff = Math.abs(Number(latitude) - room.latitude);
+                    const longDiff = Math.abs(
+                        Number(longitude) - room.longitude
+                    );
+                    if (
+                        !(
+                            latDiff > -0.05 &&
+                            latDiff < 0.5 &&
+                            longDiff > -0.05 &&
+                            longDiff < 0.5
+                        )
+                    ) {
+                        return false;
+                    }
+                }
+                if (checkInDate) {
+                    if (
+                        new Date(checkInDate as string) <
+                            new Date(room.startDate) ||
+                        new Date(checkInDate as string) > new Date(room.endDate)
+                    ) {
+                        return false;
+                    }
+                }
+                if (checkOutDate) {
+                    if (
+                        new Date(checkOutDate as string) <
+                            new Date(room.startDate) ||
+                        new Date(checkOutDate as string) >
+                            new Date(room.endDate)
+                    ) {
+                        return false;
+                    }
+                }
+                if (
+                    room.maximumGuestCount <
+                        Number(adultCount as string) +
+                            Number(childrenCount as string) * 0.5 ||
+                    0
+                ) {
+                    return false;
+                }
+                return true;
+            });
+
+            const limitedRooms = filteredRooms.splice(
+                0 + (Number(page) - 1) * Number(limit),
+                Number(limit)
+            );
+
+            // 호스트 정보 넣기
+            const roomsWithHost = await Promise.all(
+                limitedRooms.map(async room => {
+                    const host = Data.user.find({ id: room.hostId });
+                    return { ...room, host };
+                })
+            );
+            res.statusCode = 200;
+            return res.send(roomsWithHost);
+        } catch (e) {
+            console.log(e);
         }
     }
     res.statusCode = 405;
