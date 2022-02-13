@@ -21,10 +21,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     res.statusCode = 200;
                     return res.send(roomWithHost);
                 }
-                res.statusCode = 404;
+                res.statusCode = 401;
                 return res.send('호스트 정보가 없습니다.');
             }
-            res.statusCode = 404;
+            res.statusCode = 402;
             return res.send('해당 숙소가 없습니다.');
         } catch (e) {
             console.log(e);
