@@ -23,7 +23,7 @@
         "postcode": "405-240",
         "latitude": 37.4534886,
         "longitude": 126.7280249,
-        "amentites": ["무선 인터넷", "TV", "에어컨", "다리미", "난방"],
+        "amentities": ["무선 인터넷", "TV", "에어컨", "다리미", "난방"],
         "conveniences": ["수영장", "헬스장", "주차", "세탁 공간 - 세탁기"],
         "photos": [
             "https://cgs-bucket.s3.ap-northeast-2.amazonaws.com/aReYde6__d111feeb-bb23-4cda-8bb1-d0c826ff8966.jpg",

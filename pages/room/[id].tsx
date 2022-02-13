@@ -1,10 +1,11 @@
 import { NextPage } from 'next';
+import RoomDetail from '../../components/room/detail/RoomDetail';
 import { getRoomAPI } from '../../lib/api/room';
 import { wrapper } from '../../store';
 import { roomActions } from '../../store/room';
 
 const roomDetail: NextPage = () => {
-    return <div />;
+    return <RoomDetail />;
 };
 
 roomDetail.getInitialProps = wrapper.getInitialPageProps(

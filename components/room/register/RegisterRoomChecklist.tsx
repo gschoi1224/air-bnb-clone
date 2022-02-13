@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 const RegisterRoomChecklist: React.FC = () => {
-    const registerRoom = useSelector((state) => state.registerRoom);
+    const registerRoom = useSelector(state => state.registerRoom);
     // 1단계 숙소 유형이 활성화됐는지
     const isBuildingTypeActived = useMemo(() => {
         const { largeBuildingType, buildingType, roomType, isSetUpForGuest } =
@@ -86,8 +86,8 @@ const RegisterRoomChecklist: React.FC = () => {
 
     // 5단계 편의 시설이 활성화됐는지
     const isAmentitiesActived = useMemo(() => {
-        const { amentites } = registerRoom;
-        if (!amentites || amentites.length === 0) {
+        const { amentities } = registerRoom;
+        if (!amentities || amentities.length === 0) {
             return false;
         }
         return true;
