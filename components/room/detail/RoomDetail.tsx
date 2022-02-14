@@ -6,6 +6,7 @@ import palette from '../../../styles/palette';
 import RoomDetailPhotos from './RoomDetailPhotos';
 import { BedIcon } from '../../icons';
 import RoomAmentityIcon from './RoomAmentityIcon';
+import RoomDetailReservation from './RoomDetailReservation';
 
 const Container = styled.div`
     width: 1120px;
@@ -179,6 +180,7 @@ const RoomDetail: React.FC = () => {
                         </>
                     )}
                 </div>
+                <RoomDetailReservation />
             </section>
         </Container>
     );

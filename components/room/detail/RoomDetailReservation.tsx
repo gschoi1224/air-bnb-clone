@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { useRouter } from 'next/router';
 import Counter from '../../common/Counter';
 import DatePicker from '../../common/DatePicker';
 import palette from '../../../styles/palette';
@@ -8,6 +9,7 @@ import Button from '../../common/Button';
 import { useSelector } from '../../../store';
 import useModal from '../../../hooks/useModal';
 import AuthModal from '../../auth/AuthModal';
+import { makeReservationAPI } from '../../../lib/api/reservation';
 
 const Container = styled.div`
     position: sticky;
@@ -30,7 +32,7 @@ const Container = styled.div`
         border: 1px solid ${palette.gray_71};
         border-radius: 8px;
 
-        .room-detail-reservation-data-inputs {
+        .room-detail-reservation-date-inputs {
             position: relative;
             display: flex;
             width: 100%;
@@ -159,30 +161,6 @@ const RoomDetailReservation: React.FC = () => {
     const checkInRef = useRef<HTMLLabelElement>(null);
     const checkOutRef = useRef<HTMLLabelElement>(null);
 
-    // 예약하기 클릭시
-    const onClickReservationButton = async () => {
-        if (checkInRef.current && !startDate) {
-            checkInRef.current.focus();
-        } else if (checkOutRef.current && !endDate) {
-            checkOutRef.current.focus();
-        }
-    };
-
-    const [adultCount, setAdultCount] = useState<number>(1);
-    const [childrenCount, setChildrenCount] = useState<number>(0);
-    const [infantsCount, setInfantsCount] = useState<number>(0);
-
-    const [guestCountPopupOpened, setGuestCountPopupOpened] =
-        useState<boolean>(false);
-
-    const getGuestCountText = useMemo(
-        () =>
-            `게스트 ${adultCount + childrenCount}명 ${
-                infantsCount ? `, 유아 ${infantsCount}명` : ''
-            }`,
-        [adultCount, childrenCount, infantsCount]
-    );
-
     const userId = useSelector(state => state.user.id);
 
     const { openModal, closeModal, ModalPortal } = useModal();
@@ -192,6 +170,51 @@ const RoomDetailReservation: React.FC = () => {
             openModal();
         }
     };
+
+    const router = useRouter();
+
+    const [adultCount, setAdultCount] = useState<number>(1);
+    const [childrenCount, setChildrenCount] = useState<number>(0);
+    const [infantsCount, setInfantsCount] = useState<number>(0);
+
+    const [guestCountPopupOpened, setGuestCountPopupOpened] =
+        useState<boolean>(false);
+
+    // 예약하기 클릭시
+    const onClickReservationButton = async () => {
+        if (!userId) {
+            openModal();
+        } else if (checkInRef.current && !startDate) {
+            checkInRef.current.focus();
+        } else if (checkOutRef.current && !endDate) {
+            checkOutRef.current.focus();
+        } else {
+            try {
+                const body = {
+                    roomId: room.id,
+                    userId,
+                    checkInDate: startDate!.toISOString(),
+                    checkOutDate: endDate!.toISOString(),
+                    adultCount,
+                    childrenCount,
+                    infantsCount,
+                };
+                await makeReservationAPI(body);
+                alert('숙소 등록을 완료하였습니다.');
+                router.push('/');
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    };
+
+    const getGuestCountText = useMemo(
+        () =>
+            `게스트 ${adultCount + childrenCount}명 ${
+                infantsCount ? `, 유아 ${infantsCount}명` : ''
+            }`,
+        [adultCount, childrenCount, infantsCount]
+    );
 
     return (
         <Container>
