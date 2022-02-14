@@ -30,11 +30,11 @@ const Container = styled.div`
 const RegisterRoomAmentities: React.FC = () => {
     const dispatch = useDispatch();
 
-    const amentites = useSelector((state) => state.registerRoom.amentites);
+    const amentities = useSelector(state => state.registerRoom.amentities);
 
     const onChangeAmentities = (selected: string[]) => {
         console.log(selected);
-        dispatch(registerRoomActions.setAmentites(selected));
+        dispatch(registerRoomActions.setamentities(selected));
     };
     return (
         <Container>
@@ -46,7 +46,7 @@ const RegisterRoomAmentities: React.FC = () => {
             </p>
             <div className="register-room-amentities-checkbox-group-wrapper">
                 <CheckboxGroup
-                    value={amentites}
+                    value={amentities}
                     onChange={onChangeAmentities}
                     options={amentityList}
                 />

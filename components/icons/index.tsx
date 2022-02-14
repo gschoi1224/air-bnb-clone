@@ -19,6 +19,7 @@ import GrayPlus from '../../public/static/svg/register/photo/gray_plus.svg';
 import CheckMark from '../../public/static/svg/register/dark_cyan_check_mark.svg';
 import Search from '../../public/static/svg/search/white_search.svg';
 import Map from '../../public/static/svg/room/main/map.svg';
+import Bed from '../../public/static/svg/room/bed.svg';
 
 export const AirbnbLogoIcon = React.memo(AirbnbLogo);
 export const AirbnbLogoTextIcon = React.memo(AirbnbLogoText);
@@ -40,3 +41,4 @@ export const GrayPlusIcon = React.memo(GrayPlus);
 export const CheckMarkIcon = React.memo(CheckMark);
 export const SearchIcon = React.memo(Search);
 export const MapIcon = React.memo(Map);
+export const BedIcon = React.memo(Bed);

@@ -54,7 +54,7 @@ declare type StoredRoomType = {
     // 경도
     longitude: number;
     // 편의 시설
-    amentites: string[];
+    amentities: string[];
     // 편의공간
     conveniences: string[];
     // 숙소 사진
@@ -115,7 +115,7 @@ declare type RegisterRoomState = {
     // 경도
     longitude: number;
     // 편의 시설
-    amentites: string[];
+    amentities: string[];
     // 편의공간
     conveniences: string[];
     // 숙소 사진

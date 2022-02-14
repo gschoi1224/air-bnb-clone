@@ -21,7 +21,7 @@ const initialState: RegisterRoomState = {
     postcode: '',
     latitude: 0,
     longitude: 0,
-    amentites: [],
+    amentities: [],
     conveniences: [],
     photos: [],
     description: '',
@@ -97,7 +97,7 @@ const registerRoom = createSlice({
             const { bedroomId, type, count } = action.payload;
             const bedroom = state.bedList[bedroomId - 1];
             const prevBeds = bedroom.beds;
-            const index = prevBeds.findIndex((bed) => bed.type === type);
+            const index = prevBeds.findIndex(bed => bed.type === type);
             if (index === -1) {
                 // 타입이 없다면
                 state.bedList[bedroomId - 1].beds = [
@@ -120,7 +120,7 @@ const registerRoom = createSlice({
         ) {
             const { type, count } = action.payload;
             const index = state.publicBedList.findIndex(
-                (bed) => bed.type === type
+                bed => bed.type === type
             );
             if (index === -1) {
                 state.publicBedList = [...state.publicBedList, { type, count }];
@@ -173,8 +173,8 @@ const registerRoom = createSlice({
             state.longitude = action.payload;
             return state;
         },
-        setAmentites(state, action: PayloadAction<string[]>) {
-            state.amentites = action.payload;
+        setamentities(state, action: PayloadAction<string[]>) {
+            state.amentities = action.payload;
             return state;
         },
         setConveniences(state, action: PayloadAction<string[]>) {
